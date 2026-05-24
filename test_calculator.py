@@ -1,5 +1,5 @@
 import unittest
-from calculator import add, subtract, multiply, divide, sqrt
+from calculator import add, subtract, multiply, divide, sqrt, modulus
 
 class TestCalculator(unittest.TestCase):
     def test_add(self):
@@ -24,6 +24,19 @@ class TestCalculator(unittest.TestCase):
     def test_divide_by_zero(self):
         with self.assertRaises(ValueError):
             divide(10, 0)
+
+    def test_modulus(self):
+        self.assertEqual(modulus(10, 3), 1)
+        self.assertEqual(modulus(25, 5), 0)
+        self.assertEqual(modulus(17, 4), 1)
+        self.assertEqual(modulus(-10, 3), -1)
+        self.assertEqual(modulus(10, -3), 1)
+        self.assertEqual(modulus(-10, -3), -1)
+        self.assertEqual(modulus(0, 5), 0)
+
+    def test_modulus_by_zero(self):
+        with self.assertRaises(ValueError):
+            modulus(10, 0)
 
     def test_sqrt_positive(self):
         self.assertEqual(sqrt(9), 3)
